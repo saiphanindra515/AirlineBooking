@@ -70,3 +70,5 @@ class CrudOperations{
     }
 
 }
+
+module.exports = CrudOperations;
