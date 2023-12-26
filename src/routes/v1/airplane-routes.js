@@ -1,8 +1,9 @@
 const express = require('express');
 const { airplaneController } = require('../../controllers');
+const { airplaneMiddleware } = require('../../middlewares');
 
 const router = express.Router();
 
-router.post('/', airplaneController.createAirplane)
+router.post('/', airplaneMiddleware.validationCreateAirplane ,airplaneController.createAirplane)
 
 module.exports = router;
