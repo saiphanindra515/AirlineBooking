@@ -2,8 +2,10 @@ const { StatusCodes } = require('http-status-codes');
 const { AirplaneRepository } = require('../repositories')
 
 async function createAirplane(req, res){
+    console.log('create airplane controller')
     try{
-       const response = await AirplaneRepository.createAirplane({
+        const airplaneRepoObj = new AirplaneRepository();
+       const response = await airplaneRepoObj.create({
             modelNumber: req.body.modelNumber,
             capacity: req.body.capacity
         });
