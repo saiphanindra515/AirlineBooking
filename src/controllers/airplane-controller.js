@@ -1,5 +1,7 @@
 const { StatusCodes } = require('http-status-codes');
-const { airplaneService } = require('../services')
+const { airplaneService } = require('../services');
+const {errorResponse} = require('../utils/reponses')
+
 
 async function createAirplane(req, res){
     try{
@@ -14,13 +16,10 @@ async function createAirplane(req, res){
             status: 200
         })
     }
-    catch{
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-            data: null,
-            message: 'OK',
-            error: "internal server error",
-            status: 501
-        })
+    catch(error){
+        errorResponse.status = error.status;
+        errorResponse.error = error.explanation;
+        res.status(error.status).json(errorResponse);
     }
 }
 

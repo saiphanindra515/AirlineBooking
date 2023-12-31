@@ -1,7 +1,7 @@
 const errorResponse = {
     success: false,
     error: {},
-    message: "modelNumber is not sent",
+    message: "error",
     status: 400
 }
 
