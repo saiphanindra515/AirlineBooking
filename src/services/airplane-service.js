@@ -27,6 +27,17 @@ async function createAirplane(data){
     }
 }
 
+async function getAllPlanes(){
+    try{
+        let airplanes = await airplaneRepository.getAll();
+        return airplanes;
+    }
+    catch(error){
+        throw new ApiError('Something Failed at DB Level', httpStatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
 module.exports = {
-    createAirplane
+    createAirplane,
+    getAllPlanes
 }

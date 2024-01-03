@@ -7,66 +7,36 @@ class CrudOperations{
     }
 
     async create(data){
-        try{
-            const response = this.model.create(data);
-            return response;
-        }
-        catch{
-            logger.error('Error in CRUD Repo: create');
-            throw error; 
-        }
+        const response = this.model.create(data);
+        return response;
     }
 
     async destroy(data){
-        try{
-            const response = this.model.destroy({
-                where: {
-                    id: data
-                }
-            })
-            return response
-        }
-        catch{
-            logger.error('Error in CRUD Repo: destroy');
-            throw error; 
-        }
+        const response = this.model.destroy({
+            where: {
+                id: data
+            }
+        })
+        return response
     }
 
     async getByPK(id){
-        try{
-            const response = this.model.findByPk(id);
-            return response
-        }
-        catch{
-            logger.error('Error in CRUD Repo: getByPK');
-            throw error; 
-        }
+        const response = this.model.findByPk(id);
+        return response
     }
 
     async getAll(){
-        try{
-            const response = this.model.findAll();
-            return response
-        }
-        catch{
-            logger.error('Error in CRUD Repo: getALL');
-            throw error; 
-        }
+        const response = this.model.findAll();
+        return response
     }
 
     async update(data, id){
-        try{
-            const response = this.model.update(data, {
-                where: {
-                    id: id
-                }
-            });
-            return response
-        }
-        catch{
-            logger.error('Error in CRUD Repo: update');
-            throw error; 
-        }
+        const response = this.model.update(data, {
+            where: {
+                id: id
+            }
+        });
+        return response
     }
 
 }
