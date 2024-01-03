@@ -40,7 +40,47 @@ async function getAllPlanesApi(req, res){
     }
 }
 
+async function getPlane(req, res){
+    try{
+        console.log(req.params);
+        const response = await airplaneService.getPlaneByID(req.params?.id);
+        res.status(StatusCodes.OK).json({
+            data: response,
+            message: 'OK',
+            error: null,
+            status: 200
+        })
+    }
+    catch(error){
+        console.log(error);
+        errorResponse.status = error.status;
+        errorResponse.error = error.explanation;
+        res.status(error.status).json(errorResponse);
+    }
+}
+
+async function deletePlane(req, res){
+    try{
+        console.log(req.params);
+        const response = await airplaneService.deletePlaneById(req.params?.id);
+        res.status(StatusCodes.OK).json({
+            data: response,
+            message: 'OK',
+            error: null,
+            status: 200
+        })
+    }
+    catch(error){
+        console.log(error);
+        errorResponse.status = error.status;
+        errorResponse.error = error.explanation;
+        res.status(error.status).json(errorResponse);
+    }
+}
+
 module.exports = {
     createAirplane,
-    getAllPlanesApi
+    getAllPlanesApi,
+    getPlane,
+    deletePlane
 }

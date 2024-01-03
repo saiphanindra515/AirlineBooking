@@ -8,4 +8,8 @@ router.post('/', airplaneMiddleware.validationCreateAirplane ,airplaneController
 
 router.get('/', airplaneController.getAllPlanesApi);
 
+router.get('/:id', airplaneController.getPlane);
+
+router.delete('/:id', airplaneController.deletePlane)
+
 module.exports = router;

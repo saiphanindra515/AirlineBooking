@@ -37,7 +37,35 @@ async function getAllPlanes(){
     }
 }
 
+async function getPlaneByID(id){
+    try{
+        let airplane = await airplaneRepository.getByPK(id);
+        return airplane;
+    }
+    catch(error){
+        if (error.status === httpStatusCodes.NOT_FOUND){
+            throw error;
+        }
+        throw new ApiError('some error', httpStatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
+async function deletePlaneById(id){
+    try{
+        let airplane = await airplaneRepository.destroy(id);
+        return airplane;
+    }
+    catch(error){
+        if (error.status === httpStatusCodes.NOT_FOUND){
+            throw error;
+        }
+        throw new ApiError('some error', httpStatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
 module.exports = {
     createAirplane,
-    getAllPlanes
+    getAllPlanes,
+    getPlaneByID,
+    deletePlaneById
 }
