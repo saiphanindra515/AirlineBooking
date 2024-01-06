@@ -12,11 +12,11 @@ async function createCity(data){
         return response;
     }
     catch(error){
-
+        console.log(error.name);
         if(error.name === 'SequelizeDatabaseError' ){
             throw new ApiError(error.parent.sqlMessage, httpStatusCodes.BAD_REQUEST)
         }
-        else if (error.name === 'SequelizeValidationError'){
+        else if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError'){
             let explanation = [];
             error.errors.forEach(err => {
                 explanation.push(err.message);
