@@ -6,6 +6,14 @@ const router = express.Router();
 
 router.post('/', cityController.createCityApi);
 
+router.get('/', cityController.getCitiesApi);
+
+router.get('/:id', cityController.getCityApi);
+
+router.delete('/:id', cityController.deleteCityApi)
+
+
+
 // router.get('/', airplaneController.getAllPlanesApi);
 
 // router.get('/:id', airplaneController.getPlane);

@@ -27,6 +27,45 @@ async function createCity(data){
     }
 }
 
+async function getCities(){
+    try{
+        const cities = await cityRepository.getAll();
+        return cities;
+    }
+    catch(error){
+        throw new ApiError('Something Failed at DB Level', httpStatusCodes.INTERNAL_SERVER_ERROR);
+    }   
+}
+
+async function getCityId(id){
+    try{
+        let city = await cityRepository.getByPK(id);
+        return city;
+    }
+    catch(error){
+        if (error.status === httpStatusCodes.NOT_FOUND){
+            throw error;
+        }
+        throw new ApiError('some error', httpStatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
+async function deleteCityById(id){
+    try{
+        let city = await cityRepository.destroy(id);
+        return city;
+    }
+    catch(error){
+        if (error.status === httpStatusCodes.NOT_FOUND){
+            throw error;
+        }
+        throw new ApiError('some error', httpStatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
 module.exports = {
-    createCity
+    createCity,
+    getCities,
+    getCityId,
+    deleteCityById
 }
