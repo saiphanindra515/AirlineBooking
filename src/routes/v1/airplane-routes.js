@@ -10,6 +10,8 @@ router.get('/', airplaneController.getAllPlanesApi);
 
 router.get('/:id', airplaneController.getPlane);
 
-router.delete('/:id', airplaneController.deletePlane)
+router.delete('/:id', airplaneController.deletePlane);
+
+router.put('/',  airplaneMiddleware.validationCreateAirplane ,airplaneController.updatePlane)
 
 module.exports = router;

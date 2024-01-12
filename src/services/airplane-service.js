@@ -63,9 +63,21 @@ async function deletePlaneById(id){
     }
 }
 
+async function updateAirplane(data, id){
+    try{
+        let response = await airplaneRepository.update(data, id);
+        return response;
+    }
+    catch(error){
+        console.log(error);
+        throw new ApiError('some error', httpStatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
 module.exports = {
     createAirplane,
     getAllPlanes,
     getPlaneByID,
-    deletePlaneById
+    deletePlaneById,
+    updateAirplane
 }

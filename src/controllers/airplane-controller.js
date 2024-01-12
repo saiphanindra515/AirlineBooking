@@ -78,9 +78,30 @@ async function deletePlane(req, res){
     }
 }
 
+async function updatePlane(req, res){
+    try{
+        let response = await airplaneService.updateAirplane({
+            modelNumber: req.body.modelNumber,
+            capacity: req.body.capacity
+        }, req.body.id)
+        res.status(StatusCodes.ACCEPTED).json({
+            data: response,
+            message: 'OK',
+            error: null,
+            status: 200
+        })
+    }
+    catch(error){
+        errorResponse.status = error.status;
+        errorResponse.error = error.explanation;
+        res.status(error.status).json(errorResponse);
+    }
+}
+
 module.exports = {
     createAirplane,
     getAllPlanesApi,
     getPlane,
-    deletePlane
+    deletePlane,
+    updatePlane
 }
