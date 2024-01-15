@@ -23,3 +23,7 @@
   create Table
 
   npx sequelize model:generate --name Airplane --attributes modelNumber:string,capacity:integer
+
+  npx sequelize migration:generate --name update-city-airport-association
+
+  npx sequelize db:migrate:undo
